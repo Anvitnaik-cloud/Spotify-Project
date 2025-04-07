@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Liked Songs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #121212;
+      color: white;
+    }
+    header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #121212;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background-color: #282828;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .like-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #1db954;
+      cursor: pointer;
+    }
+    .back-btn {
+      margin: 20px;
+      background-color: #1db954;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .back-btn:hover {
+      background-color: #1ed760;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Liked Songs</h2>
+    <button class="back-btn" onclick="window.location.href='index.html'">← Back to Home</button>
+  </header>
+
+  <div class="card-grid" id="likedSongsContainer">
+    <!-- Liked songs will appear here -->
+  </div>
+
+  <script>
+    const likedSongsData = {
+      "My Favorite Rock": "C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b273897f73256b9128a9d70eaf66.jpg",
+      "Weekend Chill": "https://i.scdn.co/image/ab67706f00000002ff9ca32ff8d4ddf3ef8d9866",
+      "Morning Motivation": "https://i.scdn.co/image/ab67706f00000002b4b89182c63d5b4a456b5b1f"
+    };
+
+    function loadLikedSongs() {
+      const liked = JSON.parse(localStorage.getItem('likedSongs') || '[]');
+      const container = document.getElementById('likedSongsContainer');
+      container.innerHTML = '';
+
+      if (liked.length === 0) {
+        container.innerHTML = '<p style="text-align:center; width:100%;">You haven\'t liked any songs yet.</p>';
+        return;
+      }
+
+      liked.forEach(title => {
+        if (likedSongsData[title]) {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <i class="fas fa-heart like-btn" onclick="unlikeSong('${title}', this)"></i>
+            <img src="${likedSongsData[title]}" alt="${title}">
+            <p>${title}</p>
+          `;
+          container.appendChild(card);
+        }
+      });
+    }
+
+    function unlikeSong(title, icon) {
+      icon.classList.remove('liked');
+      let liked = JSON.parse(localStorage.getItem('likedSongs') || '[]');
+      liked = liked.filter(song => song !== title);
+      localStorage.setItem('likedSongs', JSON.stringify(liked));
+      loadLikedSongs(); // Refresh list
+    }
+
+    loadLikedSongs();
+  </script>
+</body>
+</html>
