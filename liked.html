@@ -43,6 +43,9 @@
       color: #1db954;
       cursor: pointer;
     }
+    .like-btn:hover {
+      color: #ff4d4d;
+    }
     .back-btn {
       margin: 20px;
       background-color: #1db954;
@@ -66,49 +69,58 @@
   </header>
 
   <div class="card-grid" id="likedSongsContainer">
-    <!-- Liked songs will appear here -->
+    <!-- Liked songs will be rendered here -->
   </div>
 
   <script>
     const likedSongsData = {
-      "My Favorite Rock": "C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b273897f73256b9128a9d70eaf66.jpg",
+      "My Favorite Rock": "assets/rock.jpg",
       "Weekend Chill": "https://i.scdn.co/image/ab67706f00000002ff9ca32ff8d4ddf3ef8d9866",
-      "Morning Motivation": "https://i.scdn.co/image/ab67706f00000002b4b89182c63d5b4a456b5b1f"
+      "Morning Motivation": "https://i.scdn.co/image/ab67706f00000002b4b89182c63d5b4a456b5b1f",
+      "Workout Hits": "assets/workout.jpg",
+      "Relax & Unwind": "assets/relax.jpg",
+      "Top Global": "assets/global.jpg",
+      "Bollywood Beats": "assets/bollywood.jpg",
+      "Indie India": "assets/indie.jpg",
+      "Lo-fi Love": "assets/lofi.jpg"
     };
 
     function loadLikedSongs() {
-      const liked = JSON.parse(localStorage.getItem('likedSongs') || '[]');
       const container = document.getElementById('likedSongsContainer');
-      container.innerHTML = '';
+      container.innerHTML = ''; // Clear previous content
 
-      if (liked.length === 0) {
-        container.innerHTML = '<p style="text-align:center; width:100%;">You haven\'t liked any songs yet.</p>';
+      const likedSongs = JSON.parse(localStorage.getItem('likedSongs') || '[]');
+
+      if (likedSongs.length === 0) {
+        container.innerHTML = "<p>No liked songs yet.</p>";
         return;
       }
 
-      liked.forEach(title => {
-        if (likedSongsData[title]) {
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <i class="fas fa-heart like-btn" onclick="unlikeSong('${title}', this)"></i>
-            <img src="${likedSongsData[title]}" alt="${title}">
-            <p>${title}</p>
-          `;
-          container.appendChild(card);
-        }
+      likedSongs.forEach(song => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const imgSrc = likedSongsData[song] || 'https://via.placeholder.com/150';
+
+        card.innerHTML = `
+          <i class="fas fa-heart like-btn" onclick="unlikeSong('${song}', this)" title="Unlike"></i>
+          <img src="${imgSrc}" alt="${song}">
+          <p>${song}</p>
+        `;
+
+        container.appendChild(card);
       });
     }
 
     function unlikeSong(title, icon) {
-      icon.classList.remove('liked');
       let liked = JSON.parse(localStorage.getItem('likedSongs') || '[]');
       liked = liked.filter(song => song !== title);
       localStorage.setItem('likedSongs', JSON.stringify(liked));
       loadLikedSongs(); // Refresh list
     }
 
-    loadLikedSongs();
+    // Load songs on page load
+    window.onload = loadLikedSongs;
   </script>
 </body>
 </html>

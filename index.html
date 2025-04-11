@@ -17,7 +17,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color:  #242222;;
+      background-color:  #242222;
     }
     header .nav-left, .profile {
       display: flex;
@@ -29,6 +29,7 @@
       border-radius: 5px;
       border: none;
     }
+
     .avatar {
       width: 30px;
       height: 30px;
@@ -38,7 +39,16 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: color 0.3s, transform 0.3s;
     }
+
+    .avatar:hover{
+      color: #1db954;
+      transform: scale(1.2);
+    }
+    
     .main-content {
       padding: 20px;
     }
@@ -78,6 +88,7 @@
       text-align: center;
       transition: transform 0.2s;
       position: relative;
+      cursor: pointer;
     }
     .card img {
       width: 100%;
@@ -96,12 +107,51 @@
     .liked {
       color: #1db954;
     }
-    header i, header .avatar, header h2, header img {
-      transition: transform 0.3s, color 0.3s;
+    .profile-circle {
+      width: 40px;
+      height: 40px;
+      background-color: #1db954;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
     }
-    header i:hover, header .avatar:hover, header h2:hover, header img:hover {
-      transform: scale(1.1);
-      color:  #1db954;
+    .my-favorite-section {
+      border: 2px dashed #1db954;
+      padding: 10px;
+      margin-top: 20px;
+      min-height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .my-favorite-section p {
+      color: #1db954;
+    }
+    .my-favorite-card {
+      background-color: #282828;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 10px;
+      cursor: pointer;
+      position: relative;
+      width: 150px; /* Fixed width */
+    }
+    .my-favorite-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .my-favorite-card i {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
     }
     footer {
       display: flex;
@@ -123,6 +173,55 @@
       color: #1db954;
       transform: scale(1.2);
     }
+    .remove-all-btn {
+      background-color: #1db954;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .remove-all-btn:hover {
+      background-color: #1aa34a;
+    }
+
+    .profile-container {
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.profile-row {
+  display: flex;
+  gap: 24px; /* spacing between artists */
+  flex-wrap: wrap; /* allows it to wrap on smaller screens */
+}
+
+.profile-item {
+  text-align: center;
+  color: white;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* makes the image circular */
+  object-fit: cover;
+}
+
+.profile-name {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
   </style>
 </head>
 <body>
@@ -133,8 +232,8 @@
       <i class="fas fa-search"></i>
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
-      <img src="C:\Users\Anvit\OneDrive\文档\Spotify\logo.png" alt="Spotify Logo" style="height: 30px;">
-      <h2>Spotify</h2>
+      <img src="C:/Users/Anvit/OneDrive/文档/Spotify/logo.png" alt="Spotify Logo" style="height: 30px;">
+      <h1>Spotify</h1>
     </div>
     <div class="profile">
       <i class="fas fa-bell"></i>
@@ -155,116 +254,124 @@
     <main>
       <div>
         <img src="C:/Users/Anvit/OneDrive/文档/Spotify/Spotify_Product_GroupSession_PRAssets_072420_v4_01-1100x421.png" alt="front body" width="100%">
-      </div> 
-
-      <h2 class="section-title">Playlists</h2>
-      <div class="card-grid">
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'My Favorite Rock')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b273897f73256b9128a9d70eaf66.jpg" alt="My Favorite Rock">
-          <p>My Favorite Rock</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\images.jpg" alt="Weekend Chill">
-          <p>Weekend Chill</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Morning Motivation')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\artworks-000234357868-b38x94-t500x500.jpg" alt="Morning Motivation">
-          <p>Morning Motivation</p>
-        </div>
       </div>
-
-      <h2 class="section-title">Recentely Played</h2>
-      <div class="card-grid">
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'My Favorite Rock')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\images (3).jpg" alt="My Favorite Rock">
-          <p>My Favorite Rock</p>
-        </div>
-
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\R-11161283-1511002395-4222.jpg" alt="Weekend Chill">
-          <p>Weekend Chill</p>
-        </div>
-
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\602557618211.webp" alt="Weekend Chill">
-          <p>Weekend Chill</p>
-        </div>
-
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\MV5BYTk2NmM3N2EtYWUwNi00ZTFmLWJjZTItMWYxZjUxNWJkZThkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Weekend Chill">
-          <p>Weekend Chill</p>
-        </div> 
-      </div>
-
-      <h2 class="section-title">Trending Now</h2>
-      <div class="card-grid">
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'My Favorite Rock')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b2736ff9ace89a019644834a801d.jpg" alt="My Favorite Rock">
-          <p>My Favorite Rock</p>
-        </div>
-
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\511bCT+EtQL.jpg" alt="Weekend Chill">
-          <p>Weekend Chill</p>
-        </div>
-
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b2737eb5b147dc197bca096c437c.jpg" alt="Weekend Chill">
-          <p>Weekend Chill</p>
-        </div>
-
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\download (1).jpg" alt="Weekend Chill">
-          <p>Weekend Chill</p>
-        </div>
-      </div>
-
       <br><br>
 
       <div>
-        <img src="C:\Users\Anvit\OneDrive\文档\Spotify\New-Release-Burst1-1100x420.jpg" height="400px" width="100%">
+        <h1>Playlists</h1>
       </div>
-
-      <h2 class="section-title">Made Just For You</h2>
-      <div class="card-grid">
-        <div class="card">
+     <div class="card-grid">
+        <div class="card" draggable="true" ondragstart="drag(event)" id="playlist1">
           <i class="fas fa-heart like-btn" onclick="likeSong(this, 'My Favorite Rock')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\Befikre-Hindi-2016-20190329150318-500x500.jpg" alt="My Favorite Rock">
+          <img src="C:/Users/Anvit/OneDrive/文档/Spotify/ab67616d0000b273897f73256b9128a9d70eaf66.jpg" alt="My Favorite Rock">
           <p>My Favorite Rock</p>
         </div>
-
-        <div class="card">
+        <div class="card" draggable="true" ondragstart="drag(event)" id="playlist2">
           <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b273f8ef6c7a66a030647287e25b.jpg" alt="Weekend Chill">
+          <img src="C:/Users/Anvit/OneDrive/文档/Spotify/images.jpg" alt="Weekend Chill">
           <p>Weekend Chill</p>
         </div>
-
-        <div class="card">
+        <div class="card" draggable="true" ondragstart="drag(event)" id="playlist3">
           <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Morning Motivation')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b2735c7fdd07d99c156401073aaa.jpg" alt="Weekend Chill">
+          <img src="C:/Users/Anvit/OneDrive/文档/Spotify/artworks-000234357868-b38x94-t500x500.jpg" alt="Morning Motivation">
           <p>Morning Motivation</p>
         </div>
-
-        <div class="card">
-          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Weekend Chill')"></i>
-          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b273d9009cc16eddbc6664508cd8.jpg" alt="Weekend Chill">
-          <p>Weekend Chill</p>
+        <div class="card" draggable="true" ondragstart="drag(event)" id="playlist4">
+          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Workout Beats')"></i>
+          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\download (3).jpg" alt="Workout Beats">
+          <p>Workout Beats</p>
+        </div>
+        <div class="card" draggable="true" ondragstart="drag(event)" id="playlist5">
+          <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Relaxing Piano')"></i>
+          <img src="C:\Users\Anvit\OneDrive\文档\Spotify\images (2).jpg" alt="Relaxing Piano">
+          <p>Relaxing Piano</p>
         </div>
       </div>
+      
+      <br>
+      <hr>
+
+       
+      <!-- Artist section -->
+<div class="profile-container">
+  <h2 class="section-title">Popular Artists</h2>
+  
+  <div class="profile-row">
+    <div class="profile-item">
+      <img src="C:\Users\Anvit\OneDrive\文档\Spotify\images (4).jpg" alt="Profile Photo" class="profile-photo">
+      <p>Charlie Puth</p>
+    </div>
+
+    <div class="profile-item">
+      <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab6761610000e5eb5ba2d75eb08a2d672f9b69b7.jpg" alt="Profile Photo" class="profile-photo">
+      <p>Arijit Singh</p>
+    </div>
+
+    <div>
+      <img src="C:\Users\Anvit\OneDrive\文档\Spotify\download (2).jpg" alt="Profile Photo" class="profile-photo">
+          <p>sonu Nigam</p>
+    </div>
+    
+    <div>
+    <img src="C:\Users\Anvit\OneDrive\文档\Spotify\images (5).jpg" alt="Profile Photo" class="profile-photo">
+        <p>Ed shreeran</p>
+    </div>
+    
+    <div>
+    <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d00001e02318443aab3531a0558e79a4d.jpg" alt="Profile Photo" class="profile-photo">
+        <p>Taylor Swift</p>
+    </div>
+    
+    </div>
+</div>
+
+<hr>
+<br><br>
+    
+    <!-- Add more artists here as needed -->
+     <div>
+      <h1>Trending Now</h1>
+     </div>
+    <div class="card-grid">
+      <div class="card" draggable="true" ondragstart="drag(event)" id="trending1">
+        <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Top 50 Global')"></i>
+        <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67706f00000002f410b0782ae5d14a46c8f14a.jpg" alt="Top 50 Global">
+        <p>Top 50 Global</p>
+      </div>
+      <div class="card" draggable="true" ondragstart="drag(event)" id="trending3">
+        <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Morning Motivation')"></i>
+        <img src="C:/Users/Anvit/OneDrive/文档/Spotify/artworks-000234357868-b38x94-t500x500.jpg" alt="Morning Motivation">
+        <p>Morning Motivation</p>
+      </div>
+      <div class="card" draggable="true" ondragstart="drag(event)" id="trending2">
+        <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Pop Rising')"></i>
+        <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b2732e2889865b7b05955c1d3bcf.jpg" alt="Pop Rising">
+        <p>Pop Rising</p>
+      </div>
+      <div class="card" draggable="true" ondragstart="drag(event)" id="trending4">
+        <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Viral Hits')"></i>
+        <img src="C:\Users\Anvit\OneDrive\文档\Spotify\ab67616d0000b2737eb5b147dc197bca096c437c.jpg" alt="Viral Hits">
+        <p>Viral Hits</p>
+      </div>
+      <div class="card" draggable="true" ondragstart="drag(event)" id="trending5">
+        <i class="fas fa-heart like-btn" onclick="likeSong(this, 'Lo-fi Beats')"></i>
+        <img src="C:\Users\Anvit\OneDrive\文档\Spotify\R-11161283-1511002395-4222.jpg" alt="Lo-fi Beats">
+        <p>Lo-fi Beats</p>
+      </div>
+    </div>
+    
+
+      <h2 class="section-title">My Favourite</h2>
+      <div class="my-favorite-section" id="my-favorite" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <i class="fas fa-plus"></i>
+      </div>
+      <br><br>
+
+      <!-- Move the button below the My Favourite section -->
+      <button class="remove-all-btn" onclick="removeAllFavorites()">Remove All</button>
 
     </main>
-    </div>
+  </div>
 
   <footer>
     <span>© 2025 Spotify</span>
@@ -273,7 +380,7 @@
         <b>Company</b>
         <li>About</li>
         <li>Jobs</li>
-        <li>For the record</li> 
+        <li>For the record</li>
       </ul>
     </div>
     <div>
@@ -292,7 +399,8 @@
   </footer>
 
   <script>
-    alert("Welcome to spotify!")
+    alert("Welcome to spotify!");
+
     function likeSong(icon, title) {
       icon.classList.toggle('liked');
       let likedSongs = JSON.parse(localStorage.getItem('likedSongs') || '[]');
@@ -302,6 +410,33 @@
         likedSongs = likedSongs.filter(song => song !== title);
       }
       localStorage.setItem('likedSongs', JSON.stringify(likedSongs));
+    }
+
+    // Drag and Drop functionality
+    function allowDrop(event) {
+      event.preventDefault();
+    }
+
+    function drag(event) {
+      event.dataTransfer.setData("text", event.target.id);
+    }
+
+    function drop(event) {
+      event.preventDefault();
+      const data = event.dataTransfer.getData("text");
+      const droppedElement = document.getElementById(data);
+      const myFavoriteSection = document.getElementById("my-favorite");
+
+      // Create a clone of the dragged item and append to My Favourite section
+      const clonedCard = droppedElement.cloneNode(true);
+      clonedCard.classList.add('my-favorite-card'); // Add a fixed size class
+      myFavoriteSection.appendChild(clonedCard);
+    }
+
+    function removeAllFavorites() {
+      const myFavoriteSection = document.getElementById("my-favorite");
+      myFavoriteSection.innerHTML = ''; // Clear all elements in the section
+      myFavoriteSection.innerHTML = '<p>Drag your favorite songs here!</p>';
     }
   </script>
 </body>
